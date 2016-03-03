@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (0.7.7)
+    em-websocket (0.5.1)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.6.0)
+    eventmachine (1.0.9.1)
+    http_parser.rb (0.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize
+  em-websocket
+
+BUNDLED WITH
+   1.10.6
