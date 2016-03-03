@@ -14,5 +14,5 @@ The tool is optimized for running on your smartphone to make some useful MiTM on
 4. Additionally install metasploit
 5. Clone this repository
 6. Run "bundle install"
-7. Copy files from bin/ to /usr/bin and chmod +x
+7. Copy files from bin/ to /usr/sbin or /usr/bin and make them executable
 8. To start mariachi, run "mariachi" command
