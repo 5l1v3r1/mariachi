@@ -22,9 +22,9 @@ EM.run {
   EM::WebSocket.run(:host => '0.0.0.0', :port => 8441) do |ws|
     ws.onmessage { |msg|
       if(!msg.match(/^PING|FIN/))
-		    open(logfile, 'a') do |f|
-		      f.puts msg
-		    end
+        open(logfile, 'a') do |f|
+          f.puts msg
+        end
         puts msg.bold.colorize(:red)
       end
       if(msg.match(/^FINEV/))
